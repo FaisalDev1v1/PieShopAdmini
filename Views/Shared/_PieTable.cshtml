@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Pie>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Pie ID</th>
+            <th>Name</th>
+            <th>Short Description</th>
+            <th>Long Description</th>
+@*             <th>Price</th>
+ *@            
+            <th>Image</th>
+            <th>Thumbnail</th>
+            <th>Pie of the Week</th>
+            <th>In Stock</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pie in Model)
+        {
+            <tr>
+                <td>@pie.PieId</td>
+                <td>@pie.Name</td>
+                <td>@pie.ShortDescription</td>
+                <td>@pie.LongDescription</td>
+@*              <td>@pie.Price.ToString("C")</td>
+ *@              
+ 
+                <td><img class="rounded-3" src="@pie.ImageUrl" alt="@pie.Name" style="width:100px;" /></td>
+                <td><img class="rounded-3" src="@pie.ImageThumbnailUrl" alt="@pie.Name" style="width:50px;" /></td>
+                <td>@pie.IsPieOfTheWeek</td>
+                <td>@pie.InStock</td>
+                <td>@pie.Category.CategoryName</td>
+                <th>
+                      <div class="d-flex gap-2">
+                        <a class="text-primary" asp-action="Edit" asp-route-id="@pie.PieId"><i class="fa fa-edit"></i></a>
+                        <a class="text-primary" asp-action="Details" asp-route-id="@pie.PieId"><i class="fa fa-eye"></i></a>
+                        <a class="text-danger" asp-action="Delete" asp-route-id="@pie.PieId"><i class="fa fa-trash-can"></i></a>
+                      </div>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>                

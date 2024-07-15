@@ -1,0 +1,86 @@
+﻿@model PieEditViewModel
+
+<h1>Edit</h1>
+
+<h4>Pie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+            <input type="hidden" asp-for="Pie.PieId" class="form-control" />
+    </div>            
+    <div class="form-group">
+                <label asp-for="Pie.Name" class="control-label"></label>
+                <input asp-for="Pie.Name" class="form-control" />
+                <span asp-validation-for="Pie.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pie.ShortDescription" class="control-label"></label>
+                <input asp-for="Pie.ShortDescription" class="form-control" />
+                <span asp-validation-for="Pie.ShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pie.LongDescription" class="control-label"></label>
+                <input asp-for="Pie.LongDescription" class="form-control"
+ style="  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;" />
+                <span asp-validation-for="Pie.LongDescription" class="text-danger"></span>
+            </div>
+@*             <div class="form-group">
+                <label asp-for="Pie.AllergyInformation" class="control-label"></label>
+                <input asp-for="Pie.AllergyInformation" class="form-control" />
+                <span asp-validation-for="Pie.AllergyInformation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pie.Price" class="control-label"></label>
+                <input asp-for="Pie.Price" class="form-control" />
+                <span asp-validation-for="Pie.Price" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="Pie.ImageUrl" class="control-label"></label>
+                <input asp-for="Pie.ImageUrl" class="form-control" />
+                <span asp-validation-for="Pie.ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pie.ImageThumbnailUrl" class="control-label"></label>
+                <input asp-for="Pie.ImageThumbnailUrl" class="form-control" />
+                <span asp-validation-for="Pie.ImageThumbnailUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pie.IsPieOfTheWeek" class="form-label"></label>
+                <input asp-for="Pie.IsPieOfTheWeek" class="form-check-input" />
+                <span asp-validation-for="Pie.IsPieOfTheWeek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pie.InStock" class="form-label"></label>
+                <input asp-for="Pie.InStock" class="form-check-input" />
+                <span asp-validation-for="Pie.InStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pie.Category.CategoryId" class="form-label">Category</label>
+                <select asp-for="Pie.Category.CategoryId" class="form-control" asp-items="@(new SelectList(Model.Categories, "CategoryId", "CategoryName", Model.Pie.CategoryId))">
+                    <option>-- Select a Category --</option>
+                </select>
+                <span asp-validation-for="Pie.Category.CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
